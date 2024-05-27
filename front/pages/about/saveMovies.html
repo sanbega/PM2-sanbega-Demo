@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../styles/resentMovies.css">
+    <link rel="stylesheet" href="../../styles/stylesMovies.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <header id="header">
+        <h3>
+            <a href="../../index.html" class="back-icon"><i class="fas fa-arrow-left"></i></a>            
+            Save Movies
+        </h3>        
+        <div class="info">
+            <p class="profile-description">Aca puedes guardar tus peliculas favoritas</p>
+        </div>
+    </header>
+    <main>
+        <div class="form">
+        <h5>Title:</h3>
+        <input class="input-large"  id="title" type="text" placeholder="Title">
+        <h5>Director:</h3>
+        <input class="input-large"  id="director" type="text" placeholder="Director">
+        <h5>Poster:</h3>
+        <input class="input-large"  id="poster" type="text" placeholder="Poster">
+        <h5>Year:</h3>
+        <input class="input-large"   id="year" type="text" placeholder="Year">
+        <h5>Duration:</h3>
+        <input class="input-large"   id="duration" type="text" placeholder="Duration">    
+        <h5>Genre:</h3>
+        <input class="input-large"   id="genre" type="text" placeholder="Genre">
+        <h5>Rate:</h3>
+        <input class="input-large"   id="rate" type="text" placeholder="Rate">
+        <div class="button-container">
+        <div class="button-container">
+        <button type="button" class="btn btn-primary"id="addMovies">Guardar!</button>
+        <button type="button" class="btn btn-primary"id="clearMovies">Limpiar!</button>
+    </div>
+        </div>
+    </main>
+    <footer id="footer">
+        <h3>Nos reservamos derechos de admisión.</h3>
+        <img src="../../img/linkedin.png">
+        <img src="../../img/github.png">
+        <img src="../../img/gmail.png">
+       
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../../scripts/saveMovies.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputs = document.querySelectorAll(".input-large");
+            const clearButton = document.getElementById("clearMovies");
+
+            function toggleClearButton() {
+                const hasValue = Array.from(inputs).some(input => input.value.trim() !== "");
+                clearButton.style.display = hasValue ? "block" : "none";
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener("input", toggleClearButton);
+            });
+
+            clearButton.addEventListener("click", function () {
+                inputs.forEach(input => {
+                    input.value = "";
+                });
+                toggleClearButton();
+            });
+
+            toggleClearButton(); 
+        });
+    </script> 
+</body>
+</html>
